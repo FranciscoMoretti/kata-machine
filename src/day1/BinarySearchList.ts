@@ -3,10 +3,11 @@ export default function bs_list(haystack: number[], needle: number): boolean {
     let high = haystack.length-1
     while (low <= high){
         let mid = Math.floor((low + high)/2)
-        if (haystack[mid] === needle){
+        const value = haystack[mid]
+        if (value === needle){
             return true
         }
-        if (haystack[mid] < needle){
+        if (value < needle){
             low = mid + 1
         }else{
             high = mid - 1
