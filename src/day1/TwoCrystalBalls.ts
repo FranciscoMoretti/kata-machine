@@ -1,5 +1,5 @@
 export default function two_crystal_balls(breaks: boolean[]): number {
-    const sqrtN = Math.ceil(Math.sqrt(breaks.length))
+    const sqrtN = Math.floor(Math.sqrt(breaks.length))
     let firstBallIdx = sqrtN
     for(; firstBallIdx<breaks.length; firstBallIdx+=sqrtN){
         if(breaks[firstBallIdx]){
