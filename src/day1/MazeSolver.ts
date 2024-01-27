@@ -1,4 +1,4 @@
-function walk(maze: string[], seen: Point[], wall: string, current: Point, end: Point): Point[] | undefined{
+function walk(maze: string[], seen: boolean[][], wall: string, current: Point, end: Point): Point[] | undefined{
     // Base
     if(current.x > maze[0].length-1 || current.x<0){
         return undefined
@@ -6,7 +6,7 @@ function walk(maze: string[], seen: Point[], wall: string, current: Point, end: 
     if(current.y > maze.length || current.y<0){
         return undefined
     }
-    if(seen.some(seenPoint => arePointsEqual(current, seenPoint) )){
+    if(seen[current.y][current.x]){
         return undefined
     }
     if(maze[current.y][current.x] == wall){
@@ -25,7 +25,7 @@ function walk(maze: string[], seen: Point[], wall: string, current: Point, end: 
         {x, y:y+1},
         {x, y:y-1},
     ]
-    seen.push(current)
+    seen[current.y][current.x] = true
     for (let point of neighbours){
         const result = walk(maze, seen, wall, point, end)
         if(result){
@@ -43,7 +43,7 @@ function arePointsEqual(point1: Point, point2: Point): boolean{
 }
 
 export default function solve(maze: string[], wall: string, start: Point, end: Point): Point[] {
-    const seen: Point[]= []
+    const seen: boolean[][]= new Array(maze.length).fill(null).map(() => new Array(maze[0].length).fill(false))
 
     const result = walk(maze, seen, wall, start, end)
     if(result){
