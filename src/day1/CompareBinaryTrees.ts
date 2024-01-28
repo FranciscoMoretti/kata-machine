@@ -18,7 +18,7 @@ export default function compare(a: BinaryNode<number> | null, b: BinaryNode<numb
 type NodeTuple = [BinaryNode<number>, BinaryNode<number>]
 
 export function compareTrees(head1: BinaryNode<number>| null, head2: BinaryNode<number>|null): boolean {
-    // Only compare structure for now
+    // BFS implementation (HARD)
     if(Boolean(head1) !== Boolean(head2)){
         return false
     }
